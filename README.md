@@ -1,4 +1,4 @@
-### RNA Sequencing Course - Scripts: Differential Gene Expression Analysis
+### RNA Sequencing Course - Scripts for Differential Gene Expression Analysis
 
 * Quality control of the raw reads:
   * fastqc_script.sh
