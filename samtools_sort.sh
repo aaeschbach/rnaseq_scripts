@@ -11,16 +11,18 @@
 #SBATCH --error=/data/courses/rnaseq/toxoplasma_de/aaeschbach/2_map_reads/error_%j.e
 #SBATCH --array=0-3
 
-# Sample names passed as arguments stored here
+# Sample names passed as arguments
 SAMPLES=("$@")
+
+# Input and output directories
 BAM_DIR=/data/courses/rnaseq/toxoplasma_de/aaeschbach/2_map_reads/bam_files/
 OUT_DIR=/data/courses/rnaseq/toxoplasma_de/aaeschbach/2_map_reads/sorted_bam_files/
 mkdir $OUT_DIR
 
-# Sort bam files by genomic coordinates
-module add UHTS/Analysis/samtools/1.10
-
+# Input and output files
 BAM_FILE=${BAM_DIR}${SAMPLES[$SLURM_ARRAY_TASK_ID]}.bam
 SORTED_BAM_FILE=${OUT_DIR}${SAMPLES[$SLURM_ARRAY_TASK_ID]}.sorted.bam
 
+# Sort bam files by genomic coordinates
+module add UHTS/Analysis/samtools/1.10
 samtools sort -m 25000M -@ 4 -o ${SORTED_BAM_FILE} -T temp ${BAM_FILE}

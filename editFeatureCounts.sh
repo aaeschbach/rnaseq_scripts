@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Edit featureCounts.txt for DESeq2 analysis
+# Edit featureCounts.txt for DESeq2 analysis
 
 # Remove header and columns 2-6 (Chr, Start, End, Strand, Length)
 tail -n+2 featureCounts.txt | cut -f1,7-22 > counts.txt

@@ -11,11 +11,11 @@
 #SBATCH --error=/data/courses/rnaseq/toxoplasma_de/aaeschbach/error_fastqc.e
 #SBATCH --array=0-31
 
-module add UHTS/Quality_control/fastqc/0.11.7
-
+# Input files and output directory
 FILES=(/data/courses/rnaseq/toxoplasma_de/reads/*)
-
 OUTPUT_DIR=/data/courses/rnaseq/toxoplasma_de/aaeschbach/1_fastqc/
 mkdir $OUTPUT_DIR
 
+# Run fastqc on raw reads
+module add UHTS/Quality_control/fastqc/0.11.7
 fastqc --outdir=$OUTPUT_DIR ${FILES[$SLURM_ARRAY_TASK_ID]}

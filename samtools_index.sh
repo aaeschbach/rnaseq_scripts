@@ -11,14 +11,13 @@
 #SBATCH --error=/data/courses/rnaseq/toxoplasma_de/aaeschbach/2_map_reads/error_%j.e
 #SBATCH --array=0-3
 
-# Sample names passed as arguments stored here
+# Sample names passed as arguments
 SAMPLES=("$@")
 
+# Define output directory and filenames
 SORTED_BAM_DIR=/data/courses/rnaseq/toxoplasma_de/aaeschbach/2_map_reads/sorted_bam_files/
+SORTED_BAM_FILE=${SORTED_BAM_DIR}${SAMPLES[$SLURM_ARRAY_TASK_ID]}.sorted.bam
 
 # Index the sorted bam files
 module add UHTS/Analysis/samtools/1.10
-
-SORTED_BAM_FILE=${SORTED_BAM_DIR}${SAMPLES[$SLURM_ARRAY_TASK_ID]}.sorted.bam
-
 samtools index ${SORTED_BAM_FILE}

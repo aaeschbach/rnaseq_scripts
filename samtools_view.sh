@@ -11,16 +11,18 @@
 #SBATCH --error=/data/courses/rnaseq/toxoplasma_de/aaeschbach/2_map_reads/error_%j.e
 #SBATCH --array=0-3
 
-# Sample names passed as arguments stored here
+# Sample names passed as arguments
 SAMPLES=("$@")
+
+# Input and output directories
 SAM_DIR=/data/courses/rnaseq/toxoplasma_de/mapping/
 OUT_DIR=/data/courses/rnaseq/toxoplasma_de/aaeschbach/2_map_reads/bam_files/
 mkdir $OUT_DIR
 
-# Convert sam files to bam format
-module add UHTS/Analysis/samtools/1.10
-
+# Input and output files
 SAM_FILE=${SAM_DIR}${SAMPLES[$SLURM_ARRAY_TASK_ID]}.sam
 BAM_FILE=${OUT_DIR}${SAMPLES[$SLURM_ARRAY_TASK_ID]}.bam
 
+# Convert sam files to bam format
+module add UHTS/Analysis/samtools/1.10
 samtools view -hbS ${SAM_FILE} > ${BAM_FILE}
