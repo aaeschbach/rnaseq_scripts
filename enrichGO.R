@@ -35,5 +35,5 @@ ego_blood <- clusterProfiler::enrichGO(
                 readable      = TRUE)
 
 # Plot results using dotplot()
-clusterProfiler::dotplot(ego_lung, orderBy = "x")
-clusterProfiler::dotplot(ego_blood, orderBy = "x")
+clusterProfiler::dotplot(ego_lung, orderBy = "x") + ggtitle("GO terms enriched in lung samples")
+clusterProfiler::dotplot(ego_blood, orderBy = "x") + ggtitle("GO terms enriched in blood samples")
