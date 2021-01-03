@@ -14,7 +14,7 @@
 # Sample names passed as arguments
 SAMPLES=("$@")
 
-# Define output directory and filenames
+# Define input directory and files
 SORTED_BAM_DIR=/data/courses/rnaseq/toxoplasma_de/aaeschbach/2_map_reads/sorted_bam_files/
 SORTED_BAM_FILE=${SORTED_BAM_DIR}${SAMPLES[$SLURM_ARRAY_TASK_ID]}.sorted.bam
 
